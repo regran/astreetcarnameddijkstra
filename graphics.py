@@ -59,6 +59,9 @@ class Border(Square):
 	type = -1
 	cost = 100000
 	isDestination = False
+	
+	def getAdjacent(cls):
+		return [] 
 	 
 class Blank(Square):
 	color = lightgreen
