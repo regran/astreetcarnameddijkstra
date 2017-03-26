@@ -2,6 +2,7 @@ import pygame
 import numpy as np
 from pygame.locals import *
 from random import randint
+from numpy.random import choice
 
 """
 types:
@@ -9,7 +10,7 @@ types:
 	house = 1	brown
 	store = 2	pink
 	park = 3	green
-	forest = 4	lightgreen
+	forest = 4	lime
 	water = 5	blue
 
 """
@@ -32,7 +33,6 @@ pink = (233, 30, 99)
 
 class Square(object):
 	
-	@classmethod
 	def draw(cls, surface, x, y):
 		s = pygame.Surface((squareWidth, squareWidth))
 		s.fill(cls.color)
@@ -81,7 +81,18 @@ class Water(Square):
 
 #randomly generates square types
 #squarelist = [[randint(0,5) for x in xrange(squaresPerRow)] for y in xrange(squaresPerRow)]
-squarelist = [[randint(0,5) for i in range (squaresPerRow)] for j in range (squaresPerRow)]
+#squarelist = [[randint(0,5) for i in range (squaresPerRow)] for j in range (squaresPerRow)]
+
+#order: blank, house, store, park, forest, water
+elements = [0, 1, 2, 3, 4, 5]		#square types
+probblank = .9
+probhouse = .01
+probstore = .01
+probpark = .01
+probforest = .05
+probwater = .02	
+weights = [probblank, probhouse, probstore, probpark, probforest, probwater]	#probabilities of each square type
+squarelist = [[choice(elements, p=weights) for i in range(squaresPerRow)] for j in range(squaresPerRow)]	#generate 2d array of square types
 print (squarelist)
 
 #replaces numerical types with actual type objects
@@ -105,7 +116,7 @@ for i in range(len(squarelist)):
 def main():
 	#initialize screen
 	pygame.init()
-	screen = pygame.display.set_mode((500, 500))
+	screen = pygame.display.set_mode((bglength, bgwidth))
 	pygame.display.set_caption('Roads!')
 	
 	#Fill background
