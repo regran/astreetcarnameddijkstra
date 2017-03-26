@@ -16,7 +16,7 @@ types:
 """
 
 
-squaresPerRow = 5
+squaresPerRow = 12
 bglength = squaresPerRow * 50
 bgwidth = squaresPerRow * 50
 squareWidth = bglength / squaresPerRow
@@ -102,7 +102,7 @@ class Road(Square):
 	isDestination = False
 	
 	roadgrid = [0 for r in range(8)]
-	indices = [i for i, x in enumerate(li) if x==1]	#locations of road branch
+	indices = [i for i, x in enumerate(roadgrid) if x==1]	#locations of road branch
 	
 	def draw (self, surface):
 		super(Square, self).draw(surface, self.x, self.y)
@@ -127,12 +127,12 @@ class Road(Square):
 
 #order: blank, house, store, park, forest, water
 elements = [0, 1, 2, 3, 4, 5]		#square types
-probblank = .5
-probhouse = .1
-probstore = .1
-probpark = .1
-probforest = .1
-probwater = .1	
+probblank = .9
+probhouse = .01
+probstore = .01
+probpark = .01
+probforest = .05
+probwater = .02	
 weights = [probblank, probhouse, probstore, probpark, probforest, probwater]	#probabilities of each square type
 squarelist = [[choice(elements, p=weights) for i in range(squaresPerRow)] for j in range(squaresPerRow)]	#generate 2d array of square types
 #print (squarelist)
@@ -145,6 +145,7 @@ squarelist = [[-1 for i in range(len(squarelist))]] + squarelist + [[-1 for i in
 for i in range (len(squarelist)):
 	squarelist[i] = [-1] + squarelist[i] + [-1]
 
+print (squarelist)
 
 
 #replaces numerical types with actual type objects
@@ -195,6 +196,7 @@ def main():
 		#	print (squarelist[i][j])
 			squarelist[i][j].draw(background, x, y)
 			#print(squarelist[i][j].adjacent)
+			print (squarelist[i][j].getAdjacent())
 
 			
 	
