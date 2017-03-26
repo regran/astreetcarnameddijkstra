@@ -45,7 +45,7 @@ class Square(object):
 	def getAdjacent(cls):
 		x = cls.x
 		y = cls.y
-		return [squarelist[x][y+1], squarelist[x+1][y+1], squarelist[x+1][y], squarelist[x+1][y-1], squarelist[x][y+1], squarelist[x-1][y-1], squarelist[i][j], squarelist[i-1][y+1]]
+		return [squarelist[i-1][y+1], squarelist[x][y+1], squarelist[x+1][y+1], squarelist[x+1][y], 0, squarelist[x+1][y-1], squarelist[x][y+1], squarelist[x-1][y-1], squarelist[i][j]]
 	
 	 
 class Border(Square):
