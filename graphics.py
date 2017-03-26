@@ -1,4 +1,5 @@
-import pygame, numpy as np
+import pygame
+import numpy as np
 from pygame.locals import *
 from random import randint
 
@@ -79,7 +80,7 @@ class Water(Square):
 
 #randomly generates square types
 squarelist = [[randint(0,5) for x in xrange(squaresPerRow)] for y in xrange(squaresPerRow)]
-print squarelist
+print (squarelist)
 
 #replaces numerical types with actual type objects
 for i in range(len(squarelist)):
@@ -96,8 +97,7 @@ for i in range(len(squarelist)):
 			squarelist[i][j]=(Forest())
 		elif squarelist[i][j] == 5:
 			squarelist[i][j]=(Water())
-print squarelist
-print "done printing squarelist"
+print (squarelist)
 
 
 def main():
