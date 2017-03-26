@@ -107,7 +107,7 @@ class Road(Square):
 	def draw (cls, surface, x, y):
 		super(Road, cls).draw(surface, x, y)
 		
-		for index in self.indices:
+		for index in cls.indices:
 			pygame.draw.line(surface, gray, [x*squareWidth + .5*squareWidth, y*squareWidth + .5*squareWidth], [x*squareWidth + index % 3 * squareWidth/2, y*squareWidth + index/3 * height/2])
 
 	
