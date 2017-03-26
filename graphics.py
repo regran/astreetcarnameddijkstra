@@ -99,7 +99,7 @@ for i in range(len(squarelist)):
 			squarelist[i][j]=(Forest())
 		elif squarelist[i][j] == 5:
 			squarelist[i][j]=(Water())
-print (squarelist)
+#print (squarelist)
 
 
 def main():
@@ -125,7 +125,7 @@ def main():
 		for j in range (len(squarelist[i])):
 			x = j * squareWidth
 			y = i * squareWidth
-			print (squarelist[i][j])
+		#	print (squarelist[i][j])
 			squarelist[i][j].draw(background, x, y)
 
 	#Blit everything to the screen
