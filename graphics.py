@@ -128,12 +128,12 @@ class Road(Square):
 
 #order: blank, house, store, park, forest, water
 elements = [0, 1, 2, 3, 4, 5]		#square types
-probblank = .9
-probhouse = .01
-probstore = .01
-probpark = .01
-probforest = .05
-probwater = .02	
+probblank = .5
+probhouse = .1
+probstore = .1
+probpark = .1
+probforest = .1
+probwater = .1	
 weights = [probblank, probhouse, probstore, probpark, probforest, probwater]	#probabilities of each square type
 squarelist = [[choice(elements, p=weights) for i in range(squaresPerRow)] for j in range(squaresPerRow)]	#generate 2d array of square types
 #print (squarelist)
