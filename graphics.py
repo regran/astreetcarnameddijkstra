@@ -211,6 +211,12 @@ def main():
 			if event.type == QUIT:
 				return
 		screen.blit(background, (0, 0))
+		for i in range (1,len(squarelist)-1):
+			for j in range (1, len(squarelist[i])-1):
+				x = (j-1) * squareWidth
+				y= (i-1) * squareWidth
+		#	print (squarelist[i][j])
+				squarelist[i][j].draw(background, x, y)
 		pygame.display.flip()
 
 if __name__ == '__main__': main()

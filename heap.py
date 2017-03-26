@@ -32,9 +32,9 @@ class pHeap:
         self.a[0][1]=self.a[self.space][1]
         self.a.pop()	#make space empty
         check=0
-        while(check<self.space and check*2+1<self.space and (self.a[check][1]>self.a[check*2+1][1] or(check*2+2<self.space and self.a[check*2+2][1]<self.a[check][1]))):
+        while(check<self.space and check*2+1<self.space and (self.a[check][1]>self.a[check*2+1][1] or(check*2+2>=self.space or self.a[check*2+2][1]<self.a[check][1]))):
 	#go down heap and swap until ordered
-            if(self.a[check*2+2][1]>self.a[check*2+1][1] or self.space==check*2+2):	#move smaller element up
+            if(self.space==check*2+2 or self.a[check*2+2][1]>self.a[check*2+1][1]):	#move smaller element up
                 swap[0]=self.a[check][0]
                 swap[1]=self.a[check][1]
                 self.a[check][0]=self.a[check*2+1][0]

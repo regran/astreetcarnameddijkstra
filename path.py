@@ -12,7 +12,7 @@ def desire(A): #a matrix (2d array) of Squares as input
             if square.isDestination:
                 dests += [square]
     for start in range(len(dests)): #find shortest path from each node to each node            
-        prev = [[[0,0] for col in range(len(A[0]))] for row in range(len(A))] #shows what node nodess are visited from
+        prev = [[[dests[start],0] for col in range(len(A[0]))] for row in range(len(A))] #shows what node nodess are visited from
         heap = hp.pHeap() #priority queue of nodes to visit w shortest distance at top
         prevpathdist = [[0 for col in range(len(A[0]))] for row in range(len(A))] #shows min previous distance travelled to get to node
         for goal in range(start+1, len(dests)):
@@ -21,7 +21,7 @@ def desire(A): #a matrix (2d array) of Squares as input
             mindist = 0
             while(not (heap.isEmpty() or (mindist!=0 and prevpathdist[q.inspect()]>mindist))):
                 at = heap.pop(); #visit node at top of heap
-                for adj in range(len(at.getAdjacent())): #check adjacent nodes
+                for adj in [adj for adj in range(len(at.getAdjacent())) if adj!=4]: #check adjacent nodes
                     cost = at.cost+at.getAdjacent()[adj].cost
                     if adj % 2 == 0:
                         cost = math.sqrt(2) * cost   
@@ -34,14 +34,14 @@ def desire(A): #a matrix (2d array) of Squares as input
                         if adj==dests[goal]: mindist = prevpathdist[minadj[0].x][minadj[0].y] 
                         #update minimum distance to goal
             c=dests[goal]
-            while(c!=dests[start]):
+            while(not c is dests[start]):
                 prevadj=prev[c.x][c.y][1]
                 c=prev[c.x][c.y][0]
-                A[c.x][c.y]=Road()
-                A[c.x][c.y].roadgrid[prev[c.x][c.y][1]], A[c.x][c.y].roadgrid[prevadj]=1,1
-                if(c!=dests[start]):
-                    c.color=(0,0,0)
-                    c.cost=1
+                if(not c is dests[start]):
+                    A[c.x][c.y]=graphics.Road(c.x,c.y)
+                    A[c.x][c.y].roadgrid[prev[c.x][c.y][1]], A[c.x][c.y].roadgrid[prevadj]=1,1
+                    #A[c.x][c.y].color=(0,0,0)
+                    A[c.x][c.y].cost=1
 
 
 
