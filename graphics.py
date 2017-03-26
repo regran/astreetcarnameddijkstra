@@ -14,9 +14,10 @@ types:
 
 """
 
-bglength = 500
-bgwidth = 500
+
 squaresPerRow = 12
+bglength = squaresPerRow * 50
+bgwidth = squaresPerRow * 50
 squareWidth = bglength / squaresPerRow
 
 white=(255, 255, 255)
@@ -79,7 +80,8 @@ class Water(Square):
 
 
 #randomly generates square types
-squarelist = [[randint(0,5) for x in xrange(squaresPerRow)] for y in xrange(squaresPerRow)]
+#squarelist = [[randint(0,5) for x in xrange(squaresPerRow)] for y in xrange(squaresPerRow)]
+squarelist = [[randint(0,5) for i in range (squaresPerRow)] for j in range (squaresPerRow)]
 print (squarelist)
 
 #replaces numerical types with actual type objects
