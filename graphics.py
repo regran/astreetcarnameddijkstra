@@ -105,7 +105,7 @@ class Road(Square):
 	indices = [i for i, x in enumerate(roadgrid) if x==1]	#locations of road branch
 	
 	def draw (cls, surface, x, y):
-		super(Square, cls).draw(surface, x, y)
+		super(Road, cls).draw(surface, x, y)
 		
 		for index in indices:
 			pygame.draw.line(surface, gray, [x*squareWidth + .5*squareWidth, y*squareWidth + .5*squareWidth], [x*squareWidth + index % 3 * squareWidth/2, y*squareWidth + index/3 * height/2])
