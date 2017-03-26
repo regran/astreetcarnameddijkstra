@@ -37,12 +37,6 @@ class Square(object):
 		self.x = x
 		self.y = y
 		
-	# try:
-		# adjacent = [squarelist[x][y+1], squarelist[x+1][y+1], squarelist[x+1][y], squarelist[x+1][y-1], squarelist[x][y+1], squarelist[x-1][y-1], squarelist[i][j], squarelist[i-1][y+1]]
-	# except Exception as error:
-		# #print()
-		# print('caught this error:' + repr(error))
-	
 	def draw(cls, surface, x, y):
 		s = pygame.Surface((squareWidth, squareWidth))
 		s.fill(cls.color)
@@ -102,10 +96,22 @@ class Water(Square):
 	isDestination = False
 	
 class Road(Square):
-	color = gray
+	color = lightgreen
 	type = 6
 	cost = 1
 	isDestination = False
+	
+	roadgrid = [0 for r in range(8)]
+	indices = [i for i, x in enumerate(li) if x==1]	#locations of road branch
+	
+	def draw (self, surface):
+		super(Square, self).draw(surface, self.x, self.y)
+		
+		for index in indices:
+			pygame.draw.line(surface, gray, [x*squareWidth + .5*squareWidth, y*squareWidth + .5*squareWidth], [x*squareWidth + index % 3 * squareWidth/2, y*squareWidth + index/3 * height/2])
+
+	
+	
 
 # class Person (pygame.sprite.sprite):
 		# def __init__(self):
