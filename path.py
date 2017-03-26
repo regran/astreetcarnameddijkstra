@@ -39,7 +39,8 @@ def desire(A): #a matrix (2d array) of Squares as input
                 c=prev[c.x][c.y][0]
                 if(not c is dests[start]):
                     A[c.x][c.y]=graphics.Road(c.x,c.y)
-                    A[c.x][c.y].roadgrid[prev[c.x][c.y][1]], A[c.x][c.y].roadgrid[prevadj]=1,1
+                    A[c.x][c.y].roadgrid[prev[c.x][c.y][1]]=1
+                    A[c.x][c.y].roadgrid[prevadj]=1
                     #A[c.x][c.y].color=(0,0,0)
                     A[c.x][c.y].cost=1
 

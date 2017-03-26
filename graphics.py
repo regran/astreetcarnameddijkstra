@@ -3,6 +3,7 @@ import numpy as np
 from pygame.locals import *
 from random import randint
 from numpy.random import choice
+from time import sleep
 
 """
 types:
@@ -96,7 +97,7 @@ class Water(Square):
 	isDestination = False
 	
 class Road(Square):
-	color = lightgreen
+	color = gray
 	type = 6
 	cost = 1
 	isDestination = False
@@ -169,42 +170,41 @@ for i in range(len(squarelist)):
 			squarelist[i][j]=(Border(i, j))
 #print (squarelist)
 
+#initialize screen
+pygame.init()
+screen = pygame.display.set_mode((bglength, bgwidth))
+pygame.display.set_caption('Roads!')
 
-def main():
-	#initialize screen
-	pygame.init()
-	screen = pygame.display.set_mode((bglength, bgwidth))
-	pygame.display.set_caption('Roads!')
-	
-	#Fill background
-	background = pygame.Surface(screen.get_size())
-	background = background.convert()
-	background.fill((250, 250, 250))
-	
-	#Display some text
-	font = pygame.font.Font(None, 36)
-	text = font.render("There will be roads", 1, (10, 10, 10))
-	textpos = text.get_rect()
-	textpos.centerx = background.get_rect().centerx
-	background.blit(text, textpos)
-	
-	#Display all the squares
-	for i in range (1,len(squarelist)-1):
-		for j in range (1, len(squarelist[i])-1):
-			x = (j-1) * squareWidth
-			y = (i-1) * squareWidth
-		#	print (squarelist[i][j])
-			squarelist[i][j].draw(background, x, y)
-			#print(squarelist[i][j].adjacent)
-			print (squarelist[i][j].getAdjacent())
+#Fill background
+background = pygame.Surface(screen.get_size())
+background = background.convert()
+background.fill((250, 250, 250))
 
-			
-	
-			
+#Display some text
+font = pygame.font.Font(None, 36)
+text = font.render("There will be roads", 1, (10, 10, 10))
+textpos = text.get_rect()
+textpos.centerx = background.get_rect().centerx
+background.blit(text, textpos)
+
+#Display all the squares
+for i in range (1,len(squarelist)-1):
+	for j in range (1, len(squarelist[i])-1):
+		x = (j-1) * squareWidth
+		y = (i-1) * squareWidth
+	#	print (squarelist[i][j])
+		squarelist[i][j].draw(background, x, y)
+		#print(squarelist[i][j].adjacent)
+		print (squarelist[i][j].getAdjacent())
+		
 	#Blit everything to the screen
-	screen.blit(background, (0, 0))
-	pygame.display.flip()
+screen.blit(background, (0, 0))
+pygame.display.flip()
+
+sleep(2)
 	
+def main():	
+
 	#Event loop
 	while 1:
 		for event in pygame.event.get():
