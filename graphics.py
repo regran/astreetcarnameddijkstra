@@ -104,7 +104,7 @@ class Road(Square):
 	roadgrid = [0 for r in range(8)]
 	indices = [i for i, x in enumerate(roadgrid) if x==1]	#locations of road branch
 	
-	def draw (self, surface):
+	def draw (self, surface, x, y):
 		super(Square, self).draw(surface, self.x, self.y)
 		
 		for index in indices:
